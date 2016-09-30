@@ -2,6 +2,11 @@
 Changelog for package aubo_driver
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.2 (2016-09-30)
+------------------
+* fixed a lib path bug
+* Contributors: robot
+
 0.1.1 (2016-09-20)
 ------------------
 * update CHANGELOG.rst
