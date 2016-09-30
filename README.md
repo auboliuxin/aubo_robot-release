@@ -5,18 +5,26 @@ This repository provides ROS support for the aubo robots.
 This repo holds source code for ROS versions Indigo.
 
 __Operating System Install__  
+
 Operating system version is not less than Ubuntu linux 14.04, some Libs and API supports 64bit interface.
 Ubuntu Linux download:http://www.ubuntu.com/download/
 
 __Peak_Can drive Install__  
-Download: http://www.peak-system.com/fileadmin/media/linux/
 
+Version peak-linux-driver-8.1,download: http://www.peak-system.com/fileadmin/media/linux/
+
+__Qt5 Widgets Install__  
+
+Version:qt-opensource-linux-x64-5.6.1-1,download: https://www.qt.io/download-open-source/#section-2
 
 __Installation from Source__  
 
 First set up a catkin workspace (see [this tutorials](http://wiki.ros.org/catkin/Tutorials)).  
 Then clone the repository into the src/ folder. It should look like /path/to/your/catkin_workspace/src/aubo_robot.  
-Make sure to source the correct setup file according to your workspace hierarchy, then use ```catkin_make``` to compile.  
+Make sure to source the correct setup file according to your workspace hierarchy, then use ```catkin_make``` to compile.
+
+If there is  a linking dependency in aubo_driver with libev library. To solve it it is necessary to install it: 
+```sudo apt-get install libev-dev```
 
 __Usage with rviz Simulation__  
 
@@ -33,7 +41,7 @@ __Usage with control real robot directly use Peakcan Tool__
   
    Note:default joint move speed is S1. 
 
-2.A simple gui tool,can moves the robot to predefined positions can be executed like this:
+2.A simple gui tool based Qt5,can moves the robot to predefined positions can be executed like this:
 
 ```rosrun aubo_control control_panel```
    
@@ -53,7 +61,7 @@ __Usage with control real robot use TCP/IP Server__
 
 ```roslaunch aubo_driver aubo_i5_bringup.launch robot_ip:=192.168.1.34```
 
-2.A simple gui tool based on Qt5,can control the robot to predefined positions can be executed like this:
+2.A simple gui tool based Qt5,can control the robot to predefined positions can be executed like this:
 
 ```rosrun aubo_control control_panel```
 
@@ -61,7 +69,8 @@ __Usage with control real robot use TCP/IP Server__
 
 
 
-__MoveIt! with a simulated robot in Gazebo__  
+__MoveIt! with a simulated robot in Gazebo__ 
+
 Again, you can use MoveIt! to control the simulated robot.  
 1.To bring up the simulated robot in Gazebo, run:
 
@@ -86,7 +95,7 @@ There is another actionlib demo with a simulated robot in Gazebo.
 
 ```rosrun aubo_trajectory trajectory_client```
 
-3.A simple gui tool,can control the robot to predefined positions can be executed like this:
+3.A simple gui tool based Qt5,can control the robot to predefined positions can be executed like this:
 
 ```rosrun aubo_control control_panel```
 
@@ -95,6 +104,7 @@ There is another actionlib demo with a simulated robot in Gazebo.
 
 
 __MoveIt! with a real robot use Peakcan Tool__  
+
 There is a trajectory demo for this part.  
 1.Make sure have installed Peakcan driver, connect peackcan to aubo robot i5, then run command,optional parameter(-S1,-S2,-S3) can control the joint move speed.
 
@@ -114,7 +124,7 @@ There is a trajectory demo for this part.
 
 ```rosrun aubo_trajectory trajectory_goal```
 
-5.A simple gui tool,can control the robot to predefined positions can be executed like this:
+5.A simple gui tool based Qt5,can control the robot to predefined positions can be executed like this:
 
 ```rosrun aubo_control control_panel```
 
