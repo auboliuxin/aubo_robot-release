@@ -1,0 +1,12 @@
+Source: ros-indigo-aubo-gazebo
+Section: misc
+Priority: extra
+Maintainer: Liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-catkin
+Homepage: http://ros.org/wiki/aubo_gazebo
+Standards-Version: 3.9.2
+
+Package: ros-indigo-aubo-gazebo
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-aubo-description, ros-indigo-effort-controllers, ros-indigo-gazebo-ros, ros-indigo-gazebo-ros-control, ros-indigo-gazebo-ros-pkgs, ros-indigo-joint-state-controller, ros-indigo-joint-trajectory-controller, ros-indigo-robot-state-publisher, ros-indigo-ros-controllers
+Description: Gazebo wrapper for the Aubo robot.
