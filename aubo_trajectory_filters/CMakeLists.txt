@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 
-project(industrial_trajectory_filters)
+project(aubo_trajectory_filters)
 
 find_package(catkin REQUIRED COMPONENTS moveit_ros_planning trajectory_msgs)
 
@@ -16,10 +16,7 @@ include_directories(include
 
 
 add_library(${PROJECT_NAME} 
-  src/n_point_filter.cpp 
   src/uniform_sample_filter.cpp
-  src/add_smoothing_filter.cpp
-  src/smoothing_trajectory_filter.cpp
 )
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
