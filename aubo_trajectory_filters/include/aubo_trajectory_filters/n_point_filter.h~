@@ -32,9 +32,9 @@
 #ifndef N_POINT_FILTER_H_
 #define N_POINT_FILTER_H_
 
-#include <industrial_trajectory_filters/filter_base.h>
+#include <aubo_trajectory_filters/filter_base.h>
 
-namespace industrial_trajectory_filters
+namespace aubo_trajectory_filters
 {
 
 /**
