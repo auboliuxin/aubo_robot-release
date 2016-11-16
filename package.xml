@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>aubo_robot</name>
-  <version>0.2.3</version>
+  <version>0.3.2</version>
   <description>
 	Description,drivers, moveit and utilities for AUBO Robot Arms.
   </description>
@@ -10,9 +10,7 @@
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
   <author email="liuxin@our-robotics.com">liuxin</author>
-  <maintainer email="liuxin@our-robotics.com">liuxin</maintainer>
-  <license>BSD</license>
-  
+  <maintainer email="liuxin@our-robotics.com">liuxin</maintainer>  
 
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
@@ -44,14 +42,17 @@
   <!-- Use test_depend for packages you need only for testing: -->
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>aubo_panel</run_depend>
   <run_depend>aubo_i5_moveit_config</run_depend>
   <run_depend>aubo_description</run_depend>
   <run_depend>aubo_msgs</run_depend>
   <run_depend>aubo_control</run_depend>
   <run_depend>aubo_driver</run_depend>
+  <run_depend>aubo_new_driver</run_depend>
   <run_depend>aubo_gazebo</run_depend>
   <run_depend>aubo_kinematics</run_depend>
   <run_depend>aubo_trajectory</run_depend>
+  <run_depend>industrial_trajectory_filters</run_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
