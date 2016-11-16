@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>aubo_description</name>
-  <version>0.2.3</version>
+  <version>0.3.2</version>
   <description>The aubo_description package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
@@ -47,6 +47,6 @@
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
-
+    <rviz plugin="${prefix}/plugin_description.xml"/>
   </export>
 </package>
