@@ -32,7 +32,7 @@
 #ifndef UNIFORM_SAMPLE_FILTER_H_
 #define UNIFORM_SAMPLE_FILTER_H_
 
-#include <industrial_trajectory_filters/filter_base.h>
+#include <aubo_trajectory_filters/filter_base.h>
 
 /*
  * These headers were part of the trajectory filter interface from the
@@ -42,7 +42,7 @@
  #include <pluginlib/class_list_macros.h>
  */
 
-namespace industrial_trajectory_filters
+namespace aubo_trajectory_filters
 {
 
 /**
@@ -52,7 +52,7 @@ namespace industrial_trajectory_filters
  */
 template<typename T>
 
-  class UniformSampleFilter : public industrial_trajectory_filters::FilterBase<T>
+  class UniformSampleFilter : public aubo_trajectory_filters::FilterBase<T>
   {
   public:
     /**

@@ -29,17 +29,17 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <industrial_trajectory_filters/uniform_sample_filter.h>
+#include <aubo_trajectory_filters/uniform_sample_filter.h>
 #include <kdl/velocityprofile_spline.hpp>
 #include <ros/ros.h>
 
-using namespace industrial_trajectory_filters;
+using namespace aubo_trajectory_filters;
 
 const double DEFAULT_SAMPLE_DURATION = 0.050; //seconds
 
 template<typename T>
   UniformSampleFilter<T>::UniformSampleFilter() :
-      industrial_trajectory_filters::FilterBase<T>()
+      aubo_trajectory_filters::FilterBase<T>()
   {
     ROS_INFO_STREAM("Constructing N point filter");
     sample_duration_ = DEFAULT_SAMPLE_DURATION;
@@ -82,13 +82,13 @@ template<typename T>
 
     while (interpolated_time < duration_in)
     {
-      ROS_INFO_STREAM("Interpolated time: " << interpolated_time);
+      ///ROS_INFO_STREAM("Interpolated time: " << interpolated_time);
       // Increment index until the interpolated time is past the start time.
       while (interpolated_time > trajectory_in.request.trajectory.points[index_in + 1].time_from_start.toSec())
       {
-        ROS_INFO_STREAM(
-            "Interpolated time: " << interpolated_time << ", next point time: " << (trajectory_in.request.trajectory.points[index_in + 1].time_from_start.toSec()));
-        ROS_INFO_STREAM("Incrementing index");
+        //ROS_INFO_STREAM(
+            //"Interpolated time: " << interpolated_time << ", next point time: " << (trajectory_in.request.trajectory.points[index_in + 1].time_from_start.toSec()));
+        ///ROS_INFO_STREAM("Incrementing index");
         index_in++;
         if (index_in >= size_in)
         {
@@ -109,8 +109,8 @@ template<typename T>
 
     }
 
-    ROS_INFO_STREAM(
-        "Interpolated time exceeds original trajectory (quitting), original: " << duration_in << " final interpolated time: " << interpolated_time);
+    //ROS_INFO_STREAM(
+        //"Interpolated time exceeds original trajectory (quitting), original: " << duration_in << " final interpolated time: " << interpolated_time);
     p2 = trajectory_in.request.trajectory.points.back();
     p2.time_from_start = ros::Duration(interpolated_time);
     // TODO: Really should check that appending the last point doesn't result in
@@ -118,8 +118,8 @@ template<typename T>
     // large percentage of the trajectory duration (not likely).
     trajectory_out.request.trajectory.points.push_back(p2);
 
-    ROS_INFO_STREAM(
-        "Uniform sampling, resample duraction: " << sample_duration_ << " input traj. size: " << trajectory_in.request.trajectory.points.size() << " output traj. size: " << trajectory_out.request.trajectory.points.size());
+    //ROS_INFO_STREAM(
+//"Uniform sampling, resample duraction: " << sample_duration_ << " input traj. size: " << trajectory_in.request.trajectory.points.size() << " output traj. size: " << trajectory_out.request.trajectory.points.size());
 
     success = true;
     return success;
@@ -134,7 +134,7 @@ template<typename T>
     double p1_time_from_start = p1.time_from_start.toSec();
     double p2_time_from_start = p2.time_from_start.toSec();
 
-    ROS_INFO_STREAM("time from start: " << time_from_start);
+    //ROS_INFO_STREAM("time from start: " << time_from_start);
 
     if (time_from_start >= p1_time_from_start && time_from_start <= p2_time_from_start)
     {
@@ -150,7 +150,7 @@ template<typename T>
           // resample duration is less that the actual duration, which it might
           // be sometimes)
           KDL::VelocityProfile_Spline spline_calc;
-          ROS_INFO_STREAM( "---------------Begin interpolating joint point---------------");
+          //ROS_INFO_STREAM( "---------------Begin interpolating joint point---------------");
 
           for (size_t i = 0; i < p1.positions.size(); ++i)
           {
@@ -158,30 +158,27 @@ template<typename T>
             double time_from_p1 = time_from_start - p1.time_from_start.toSec();
             double time_from_p1_to_p2 = p2_time_from_start - p1_time_from_start;
 
-            ROS_INFO_STREAM("time from p1: " << time_from_p1);
-            ROS_INFO_STREAM( "time_from_p1_to_p2: " << time_from_p1_to_p2);
+            //ROS_INFO_STREAM("time from p1: " << time_from_p1);
+            //ROS_INFO_STREAM( "time_from_p1_to_p2: " << time_from_p1_to_p2);
 
             spline_calc.SetProfileDuration(p1.positions[i], p1.velocities[i], p1.accelerations[i], p2.positions[i],
                                            p2.velocities[i], p2.accelerations[i], time_from_p1_to_p2);
 
             ros::Duration time_from_start_dur(time_from_start);
-            ROS_INFO_STREAM( "time from start_dur: " << time_from_start_dur);
+            //ROS_INFO_STREAM( "time from start_dur: " << time_from_start_dur);
 
             interp_pt.time_from_start = time_from_start_dur;
             interp_pt.positions[i] = spline_calc.Pos(time_from_p1);
             interp_pt.velocities[i] = spline_calc.Vel(time_from_p1);
             interp_pt.accelerations[i] = spline_calc.Acc(time_from_p1);
 
-            ROS_INFO_STREAM(
-                "p1.pos: " << p1.positions[i] << ", vel: " << p1.velocities[i] << ", acc: " << p1.accelerations[i] << ", tfs: " << p1.time_from_start);
+            //ROS_INFO_STREAM("p1.pos: " << p1.positions[i] << ", vel: " << p1.velocities[i] << ", acc: " << p1.accelerations[i] << ", tfs: " << p1.time_from_start);
 
-            ROS_INFO_STREAM(
-                "p2.pos: " << p2.positions[i] << ", vel: " << p2.velocities[i] << ", acc: " << p2.accelerations[i] << ", tfs: " << p2.time_from_start);
+            //ROS_INFO_STREAM("p2.pos: " << p2.positions[i] << ", vel: " << p2.velocities[i] << ", acc: " << p2.accelerations[i] << ", tfs: " << p2.time_from_start);
 
-            ROS_INFO_STREAM(
-                "interp_pt.pos: " << interp_pt.positions[i] << ", vel: " << interp_pt.velocities[i] << ", acc: " << interp_pt.accelerations[i] << ", tfs: " << interp_pt.time_from_start);
+            //ROS_INFO_STREAM("interp_pt.pos: " << interp_pt.positions[i] << ", vel: " << interp_pt.velocities[i] << ", acc: " << interp_pt.accelerations[i] << ", tfs: " << interp_pt.time_from_start);
           }
-          ROS_INFO_STREAM( "---------------End interpolating joint point---------------");
+          //ROS_INFO_STREAM( "---------------End interpolating joint point---------------");
           rtn = true;
         }
         else
@@ -213,7 +210,7 @@ template<typename T>
   }
 
 // registering planner adapter
-CLASS_LOADER_REGISTER_CLASS( industrial_trajectory_filters::UniformSampleFilterAdapter,
+CLASS_LOADER_REGISTER_CLASS( aubo_trajectory_filters::UniformSampleFilterAdapter,
                             planning_request_adapter::PlanningRequestAdapter);
 
 /*
