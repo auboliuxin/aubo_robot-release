@@ -1,10 +1,14 @@
 #ifndef OURCONTROL_H
 #define OURCONTROL_H
 
+#ifndef METATYPE_H
+#define METATYPE_H
+
 #include <stdint.h>
-#include <string>
-#include <vector>
+#include <iostream>
+
 #include <map>
+
 
 #define PACKED  __attribute__((__packed__))
 
@@ -36,95 +40,6 @@ typedef struct
     our_control_json_tail   json_tail;
 }our_control_json_frame;
 
-typedef enum{
-    //login,logout
-    our_control_cmd_login,                    //系统登陆
-    our_control_cmd_logout,                   //系统退出
-
-    //robot status
-    our_control_cmd_get_robot_status,         //读取机械臂状态
-    our_control_cmd_get_joint_status,         //读取机械臂关节状态
-    our_control_cmd_get_controlbox_status,    //读取控制柜状态
-    our_control_cmd_get_robot_all_status,     //读取所有状态（美克需求）
-
-    //robot position
-    our_control_cmd_get_robot_position,       //读取机械臂当前状态
-    our_control_cmd_get_end_speed,            //读取机械臂末端速度
-
-    //featrure
-    our_control_cmd_get_feature_list,         //读取平面坐标系列表
-
-    //event
-    our_control_cmd_event,                    //机械臂系统事件
-
-    //robot move control
-    our_control_cmd_move_j,                   //机械臂关节移动
-    our_control_cmd_move_l,                   //机械臂直线运动
-    our_control_cmd_move_p,                   //机械臂轨迹运动
-    our_control_cmd_move_l_to,                //机械臂保持位姿直线运动到目标位置
-
-    //project control
-    our_control_cmd_project_getlist,          //获取ORPE中所有工程列表
-    our_control_cmd_project_load,             //设置ORPE当前加载工程
-    our_control_cmd_project_control,          //ORPE工程控制（启动，停止，暂停）
-    our_control_cmd_project_getstatus,        //获取ORPE工程状态（启动，停止，暂停）
-
-    //enable/disable event
-    our_control_cmd_enable_position_event,    //允许ORPE持续返回当前位置（5毫秒一次）
-    our_control_cmd_disenable_position_event, //禁止ORPE持续返回当前位置
-
-    //robot control
-    our_control_cmd_robot_power_control,      //设置机械臂48V电源状态
-    our_control_cmd_robot_brake_control,      //设置机械臂刹车状态
-    our_control_cmd_robot_collision_class,    //设置机械臂碰撞等级
-    our_control_cmd_robot_enalbe_read_pose,   //设置接口板是否允许读取自身位姿
-
-    //device info
-    our_control_cmd_get_device_info,          //读取机械臂设备信息
-
-    //io control
-    our_control_cmd_get_io_config,            //获取所有IO设置
-    our_control_cmd_get_io_status,            //获取指定IO状态
-    our_control_cmd_set_io_status,            //设置指定IO状态
-
-    //coord convert
-    our_control_cmd_robot_coord_convert,      //坐标系转换
-
-    //tpc center param
-    our_control_cmd_set_robot_tcp_center,     //设置TCP中心
-    our_control_cmd_get_robot_tcp_center,     //获取TCP中心
-
-    //teach move
-    our_control_cmd_teach_point_move,         //控制机器人沿着试教点运动
-    our_control_cmd_teach_joint_move,         //控制机器人轴动
-
-    //armik,armfk
-    our_control_cmd_arm_ik,                   //逆解
-    our_control_cmd_arm_fk,                   //正解
-
-    //robot init
-    our_control_cmd_get_robot_init_status,    //获取机械臂初始化状态
-
-    //robot control
-    our_control_cmd_robot_control,            //机械臂控制
-
-    //switch robot run mode
-    our_control_cmd_set_robot_mode,           //设置机械臂仿真模式/真实模式
-    our_control_cmd_get_robot_mode,           //获取机械臂仿真模式/真实模式
-
-    //command count
-    our_control_cmd_count,
-
-    //unknown command
-    our_control_unknown_command
-
-}our_control_command;
-
-typedef struct
-{
-    our_control_command cmd;
-    std::string command_str;
-}our_json_command;
 
 typedef struct
 {
@@ -303,12 +218,7 @@ typedef enum
     our_control_json_error
 }our_control_command_result;
 
-typedef struct
-{
-    our_control_command response_command;
-    std::string error_msg;
-    uint8_t error_code;
-}json_cmd_response;
+
 
 typedef struct
 {
@@ -343,6 +253,13 @@ typedef struct
     our_control_event event_id;
     std::string desc;
 }our_event;
+
+typedef struct{
+    int  type;
+    int  code;
+    std::string message;
+}our_control_event_msg;
+
 
 typedef enum
 {
@@ -529,6 +446,13 @@ typedef enum{
 
 
 
+//事件推送  函数指针类型
+typedef void (*EventPushCallback)(our_control_event, our_control_event_msg);
+
+//实时路点事件  函数指针类型
+typedef void (*RealTimeRoadPointEventCallback)(our_robot_road_point roadPoint, float endSpeed);
+
+
 #define RESPONSE_COMMAND     "response_command"
 #define RESPONSE_ERROR_CODE  "error_code"
 #define RESPONSE_ERROR_MSG   "error_msg"
@@ -543,4 +467,67 @@ typedef enum{
 #define TCP_MESSAGE_BYTE (4*1024)
 
 
-#endif // OURCONTROL_H
+
+
+
+/***机械臂路点属性之关节角形式****/
+typedef struct
+{
+    double joint[6];
+
+}RobotRoadPointJoint;
+
+
+/***机械臂路点属性之坐标形式***/
+typedef struct
+{
+    double x;
+    double y;
+    double z;
+}RobotRoadPointPosition;
+
+
+/***机械臂路点属性之姿态形式***/
+typedef struct
+{
+    double w;
+    double x;
+    double y;
+    double z;
+}RobotRoadPointPose;
+
+
+/***机械臂路点***/
+typedef struct
+{
+    RobotRoadPointJoint    roadPointJoint;
+    RobotRoadPointPosition roadPointPosition;
+    RobotRoadPointPose     roadPointPose;
+}RobotRoadPoint;
+
+
+/***硬件和固件版本***/
+typedef struct PACKED
+{
+    unsigned short hw_version;     //硬件版本 (u16)(100)
+    unsigned short sw_version;     //固件版本 (u16)((15<<9)|(5<<5)|(13)) 表示：2015年5月13日
+}RobotJointVer;
+
+
+/***设备信息***/
+typedef struct PACKED
+{
+    unsigned char type;                      //设备型号、芯片型号：上位机主站：0x01  接口板0x02
+    char revision[16];               //设备版本号，V1.0
+    char manu_id[32];                //厂家ID，"OUR "的ASCII码0x4F 55 52 00
+    char joint_type[16];             //机械臂类型
+    RobotJointVer joint_ver[7];  //机械臂关节及工具端信息
+    char desc[64];                   //设备描述字符串以0x00结束
+
+}RobotDeviceInfo;
+
+
+
+#endif // METATYPE_H
+
+#endif
