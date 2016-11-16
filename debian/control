@@ -1,0 +1,12 @@
+Source: ros-indigo-aubo-i5-moveit-config
+Section: misc
+Priority: extra
+Maintainer: MoveIt Setup Assistant <assistant@moveit.ros.org>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-aubo-description, ros-indigo-catkin
+Homepage: http://moveit.ros.org/
+Standards-Version: 3.9.2
+
+Package: ros-indigo-aubo-i5-moveit-config
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-aubo-description, ros-indigo-joint-state-publisher, ros-indigo-moveit-planners-ompl, ros-indigo-moveit-ros-move-group, ros-indigo-moveit-ros-visualization, ros-indigo-robot-state-publisher, ros-indigo-xacro
+Description: An automatically generated package with all the configuration and launch files for using the aubo_i5 with the MoveIt Motion Planning Framework
