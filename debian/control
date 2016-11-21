@@ -1,0 +1,12 @@
+Source: ros-indigo-aubo-control
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-indigo-aubo-msgs, ros-indigo-catkin, ros-indigo-roscpp, ros-indigo-rospy, ros-indigo-sensor-msgs, ros-indigo-std-msgs, ros-indigo-tf
+Homepage: http://wiki.ros.org/aubo_control
+Standards-Version: 3.9.2
+
+Package: ros-indigo-aubo-control
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-indigo-aubo-msgs, ros-indigo-roscpp, ros-indigo-rospy, ros-indigo-sensor-msgs, ros-indigo-std-msgs, ros-indigo-tf
+Description: The aubo_control package
