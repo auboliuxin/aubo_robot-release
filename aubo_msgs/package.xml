@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>aubo_msgs</name>
-  <version>0.3.11</version>
+  <version>0.3.12</version>
   <description>The aubo_msgs package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
@@ -9,7 +9,7 @@
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
   <author email="liuxin@our-robotics.com">liuxin</author>
   <maintainer email="liuxin@our-robotics.com">liuxin</maintainer>
-  <license>BSD</license>
+ 
   <url type="website">http://wiki.ros.org/aubo_msgs</url>
 
 
