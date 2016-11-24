@@ -1,0 +1,12 @@
+Source: ros-jade-aubo-kinematics
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, ros-jade-catkin, ros-jade-geometry-msgs, ros-jade-moveit-core, ros-jade-moveit-ros-planning, ros-jade-pluginlib, ros-jade-roscpp, ros-jade-tf-conversions
+Homepage: http://wiki.ros.org/aubo_kinematics
+Standards-Version: 3.9.2
+
+Package: ros-jade-aubo-kinematics
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, ros-jade-geometry-msgs, ros-jade-moveit-core, ros-jade-moveit-ros-planning, ros-jade-pluginlib, ros-jade-roscpp, ros-jade-tf-conversions
+Description: Provides forward and inverse kinematics for Aubo Robots designs.
