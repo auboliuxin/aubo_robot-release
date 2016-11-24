@@ -1,0 +1,12 @@
+Source: ros-jade-aubo-panel
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-jade-aubo-msgs, ros-jade-catkin, ros-jade-class-loader, ros-jade-pluginlib, ros-jade-roscpp, ros-jade-rospy, ros-jade-rviz, ros-jade-sensor-msgs, ros-jade-std-msgs
+Homepage: http://wiki.ros.org/aubo_control
+Standards-Version: 3.9.2
+
+Package: ros-jade-aubo-panel
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jade-aubo-msgs, ros-jade-class-loader, ros-jade-pluginlib, ros-jade-roscpp, ros-jade-rospy, ros-jade-rviz, ros-jade-sensor-msgs, ros-jade-std-msgs
+Description: The aubo_panel plugin package
