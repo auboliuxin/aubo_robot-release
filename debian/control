@@ -1,0 +1,12 @@
+Source: ros-jade-aubo-trajectory
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-jade-actionlib, ros-jade-aubo-msgs, ros-jade-catkin, ros-jade-cmake-modules, ros-jade-control-msgs, ros-jade-interactive-markers, ros-jade-moveit-core, ros-jade-moveit-ros-perception, ros-jade-moveit-ros-planning-interface, ros-jade-pluginlib, ros-jade-sensor-msgs, ros-jade-std-msgs
+Homepage: http://wiki.ros.org/aubo_trajectory
+Standards-Version: 3.9.2
+
+Package: ros-jade-aubo-trajectory
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jade-actionlib, ros-jade-aubo-msgs, ros-jade-control-msgs, ros-jade-interactive-markers, ros-jade-moveit-core, ros-jade-moveit-fake-controller-manager, ros-jade-moveit-ros-perception, ros-jade-moveit-ros-planning-interface, ros-jade-pluginlib, ros-jade-sensor-msgs, ros-jade-std-msgs
+Description: The aubo_trajectory package
