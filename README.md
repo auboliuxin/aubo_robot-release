@@ -1,3 +1,38 @@
+## aubo_robot (jade) - 0.3.16-0
+
+The packages in the `aubo_robot` repository were released into the `jade` distro by running `/usr/bin/bloom-release aubo_robot --track jade --rosdistro jade --new-track` on `Fri, 31 Mar 2017 06:54:30 -0000`
+
+These packages were released:
+- `aubo_control`
+- `aubo_description`
+- `aubo_driver`
+- `aubo_gazebo`
+- `aubo_i5_moveit_config`
+- `aubo_kinematics`
+- `aubo_msgs`
+- `aubo_new_driver`
+- `aubo_panel`
+- `aubo_robot`
+- `aubo_trajectory`
+- `aubo_trajectory_filters`
+
+Version of package(s) in repository `aubo_robot`:
+
+- upstream repository: https://github.com/auboliuxin/aubo_robot.git
+- release repository: https://github.com/auboliuxin/aubo_robot-release.git
+- rosdistro version: `0.3.10-1`
+- old version: `0.3.11-0`
+- new version: `0.3.16-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.22`
+- catkin_pkg version: `0.2.10`
+- rosdep version: `0.11.5`
+- rosdistro version: `0.4.7`
+- vcstools version: `0.1.38`
+
+
 ## aubo_robot (indigo) - 0.3.12-1
 
 The packages in the `aubo_robot` repository were released into the `indigo` distro by running `/usr/bin/bloom-release aubo_robot --track indigo --rosdistro indigo --new-track` on `Thu, 24 Nov 2016 09:47:40 -0000`
