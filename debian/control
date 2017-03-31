@@ -1,0 +1,12 @@
+Source: ros-indigo-aubo-kinematics
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, ros-indigo-catkin, ros-indigo-geometry-msgs, ros-indigo-moveit-core, ros-indigo-moveit-kinematics, ros-indigo-moveit-ros-planning, ros-indigo-pluginlib, ros-indigo-roscpp, ros-indigo-tf-conversions
+Homepage: http://wiki.ros.org/aubo_kinematics
+Standards-Version: 3.9.2
+
+Package: ros-indigo-aubo-kinematics
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, ros-indigo-geometry-msgs, ros-indigo-moveit-core, ros-indigo-moveit-kinematics, ros-indigo-moveit-ros-planning, ros-indigo-pluginlib, ros-indigo-roscpp, ros-indigo-tf-conversions
+Description: Provides forward and inverse kinematics for Aubo Robots designs.
