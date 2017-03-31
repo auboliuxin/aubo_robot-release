@@ -80,6 +80,7 @@ install(TARGETS aubo_panel
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+
 # install moveit plugin description file
 install(FILES aubo_rviz_plugins.xml
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}

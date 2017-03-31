@@ -14,20 +14,25 @@ Changelog for package aubo_i5_moveit_config
 * new version:add aubo_panel,aubo_new_driver
 * Contributors: robot
 
-0.3.12 (2016-12-20)
+0.3.14 (2017-03-31)
+-------------------
+* fixed up aubo_kinematics
+* fixed up aubo_kinematics
+* Contributors: robot
+
+* fixed up aubo_kinematics
+* Contributors: robot
+
+0.3.13 (2016-12-20)
 -------------------
 
-0.3.11 (2016-11-24)
--------------------
-
-0.3.10 (2016-11-24)
--------------------
-
-0.3.9 (2016-11-24)
+0.3.8 (2016-11-24)
 ------------------
 
 0.3.7 (2016-11-21)
 ------------------
+* indigo-devel relaease version
+* Contributors: robot
 
 0.3.6 (2016-11-17)
 ------------------
