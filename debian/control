@@ -1,0 +1,12 @@
+Source: ros-kinetic-aubo-new-driver
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-actionlib, ros-kinetic-aubo-msgs, ros-kinetic-catkin, ros-kinetic-control-msgs, ros-kinetic-controller-manager, ros-kinetic-geometry-msgs, ros-kinetic-hardware-interface, ros-kinetic-message-generation, ros-kinetic-roscpp, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-tf, ros-kinetic-trajectory-msgs
+Homepage: http://wiki.ros.org/aubo_new_driver
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-aubo-new-driver
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-actionlib, ros-kinetic-aubo-description, ros-kinetic-aubo-msgs, ros-kinetic-control-msgs, ros-kinetic-controller-manager, ros-kinetic-geometry-msgs, ros-kinetic-hardware-interface, ros-kinetic-ros-controllers, ros-kinetic-roscpp, ros-kinetic-rospy, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-tf, ros-kinetic-trajectory-msgs
+Description: The aubo_new_driver package for AUBO-I5 connect the TCP/IP Server
