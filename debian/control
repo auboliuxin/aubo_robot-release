@@ -1,0 +1,12 @@
+Source: ros-kinetic-aubo-robot
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-catkin
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-aubo-robot
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-aubo-control, ros-kinetic-aubo-description, ros-kinetic-aubo-driver, ros-kinetic-aubo-gazebo, ros-kinetic-aubo-i5-moveit-config, ros-kinetic-aubo-kinematics, ros-kinetic-aubo-msgs, ros-kinetic-aubo-new-driver, ros-kinetic-aubo-panel, ros-kinetic-aubo-trajectory, ros-kinetic-aubo-trajectory-filters
+Description: Description,drivers, moveit and utilities for AUBO Robot Arms.
