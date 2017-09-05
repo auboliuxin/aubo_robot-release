@@ -1,0 +1,12 @@
+Source: ros-kinetic-aubo-control
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-aubo-msgs, ros-kinetic-catkin, ros-kinetic-roscpp, ros-kinetic-rospy, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-tf
+Homepage: http://wiki.ros.org/aubo_control
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-aubo-control
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-aubo-msgs, ros-kinetic-roscpp, ros-kinetic-rospy, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs, ros-kinetic-tf
+Description: The aubo_control package
