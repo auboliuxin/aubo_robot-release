@@ -1,0 +1,12 @@
+Source: ros-kinetic-aubo-panel
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-aubo-msgs, ros-kinetic-catkin, ros-kinetic-class-loader, ros-kinetic-pluginlib, ros-kinetic-roscpp, ros-kinetic-rospy, ros-kinetic-rviz, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs
+Homepage: http://wiki.ros.org/aubo_control
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-aubo-panel
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-aubo-msgs, ros-kinetic-class-loader, ros-kinetic-pluginlib, ros-kinetic-roscpp, ros-kinetic-rospy, ros-kinetic-rviz, ros-kinetic-sensor-msgs, ros-kinetic-std-msgs
+Description: The aubo_panel plugin package
