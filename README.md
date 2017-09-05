@@ -1,3 +1,38 @@
+## aubo_robot (kinetic) - 0.3.18-0
+
+The packages in the `aubo_robot` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release aubo_robot --track kinetic --rosdistro kinetic --new-track` on `Tue, 05 Sep 2017 07:35:28 -0000`
+
+These packages were released:
+- `aubo_control`
+- `aubo_description`
+- `aubo_driver`
+- `aubo_gazebo`
+- `aubo_i5_moveit_config`
+- `aubo_kinematics`
+- `aubo_msgs`
+- `aubo_new_driver`
+- `aubo_panel`
+- `aubo_robot`
+- `aubo_trajectory`
+- `aubo_trajectory_filters`
+
+Version of package(s) in repository `aubo_robot`:
+
+- upstream repository: https://github.com/auboliuxin/aubo_robot.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.3.18-0`
+
+Versions of tools used:
+
+- bloom version: `0.5.26`
+- catkin_pkg version: `0.3.4`
+- rosdep version: `0.11.5`
+- rosdistro version: `0.6.2`
+- vcstools version: `0.1.39`
+
+
 ## aubo_robot (indigo) - 0.3.15-0
 
 The packages in the `aubo_robot` repository were released into the `indigo` distro by running `/usr/bin/bloom-release aubo_robot --track indigo --rosdistro indigo --new-track` on `Fri, 31 Mar 2017 07:04:58 -0000`
