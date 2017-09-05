@@ -1,0 +1,12 @@
+Source: ros-kinetic-aubo-kinematics
+Section: misc
+Priority: extra
+Maintainer: liuxin <liuxin@our-robotics.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, ros-kinetic-catkin, ros-kinetic-geometry-msgs, ros-kinetic-moveit-core, ros-kinetic-moveit-kinematics, ros-kinetic-moveit-ros-planning, ros-kinetic-pluginlib, ros-kinetic-roscpp, ros-kinetic-tf-conversions
+Homepage: http://wiki.ros.org/aubo_kinematics
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-aubo-kinematics
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, ros-kinetic-geometry-msgs, ros-kinetic-moveit-core, ros-kinetic-moveit-kinematics, ros-kinetic-moveit-ros-planning, ros-kinetic-pluginlib, ros-kinetic-roscpp, ros-kinetic-tf-conversions
+Description: Provides forward and inverse kinematics for Aubo Robots designs.
