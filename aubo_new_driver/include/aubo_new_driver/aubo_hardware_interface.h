@@ -42,6 +42,7 @@
 #include <hardware_interface/joint_command_interface.h>
 #include <hardware_interface/force_torque_sensor_interface.h>
 #include <hardware_interface/robot_hw.h>
+#include <hardware_interface/controller_info.h>
 #include <controller_manager/controller_manager.h>
 #include <boost/scoped_ptr.hpp>
 #include <ros/ros.h>
@@ -99,6 +100,7 @@ protected:
 	std::vector<double> joint_position_;
 	std::vector<double> joint_velocity_;
 	std::vector<double> joint_effort_;
+	std::vector<double> last_joint_position_command_;
 	std::vector<double> joint_position_command_;
 	std::vector<double> joint_velocity_command_;
 	std::vector<double> prev_joint_velocity_command_;

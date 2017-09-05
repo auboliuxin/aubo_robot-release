@@ -37,6 +37,7 @@
 
 #include <aubo_new_driver/aubo_hardware_interface.h>
 
+
 namespace ros_control_aubo {
 
 AuboHardwareInterface::AuboHardwareInterface(ros::NodeHandle& nh, AuboNewDriver* robot) :
@@ -67,6 +68,7 @@ void AuboHardwareInterface::init() {
 	joint_velocity_.resize(num_joints_);
 	joint_effort_.resize(num_joints_);
 	joint_position_command_.resize(num_joints_);
+	last_joint_position_command_.resize(num_joints_);
 	joint_velocity_command_.resize(num_joints_);
 	prev_joint_velocity_command_.resize(num_joints_);
 
@@ -130,6 +132,7 @@ void AuboHardwareInterface::setMaxVelChange(double inp) {
 }
 
 void AuboHardwareInterface::write() {
+        int i=0;
 	if (velocity_interface_running_) {
 		std::vector<double> cmd;
 		//do some rate limiting
@@ -147,7 +150,20 @@ void AuboHardwareInterface::write() {
         robot_->setSpeed(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4], cmd[5],  max_vel_change_*125);
     }
     else if (position_interface_running_) {
-        robot_->servoj(joint_position_command_);
+
+	  for(i=0;i<6;i++)
+	  {
+	    if(fabs(joint_position_command_[i]-last_joint_position_command_[i])>=0.000001)
+	    {
+	       break;
+	    }
+	  }
+
+	  if(i<6)
+	  {
+	    robot_->servoj(joint_position_command_);
+            last_joint_position_command_ = joint_position_command_;
+	  }
 	}
 }
 
@@ -157,13 +173,13 @@ bool AuboHardwareInterface::canSwitch(
 	for (std::list<hardware_interface::ControllerInfo>::const_iterator controller_it =
 			start_list.begin(); controller_it != start_list.end();
 			++controller_it) {
-		if (controller_it->hardware_interface
-				== "hardware_interface::VelocityJointInterface") {
+        if (controller_it->type
+                == "velocity_controllers/JointTrajectoryController") {
 			if (velocity_interface_running_) {
 				ROS_ERROR(
 						"%s: An interface of that type (%s) is already running",
 						controller_it->name.c_str(),
-						controller_it->hardware_interface.c_str());
+                        controller_it->type.c_str());
 				return false;
 			}
 			if (position_interface_running_) {
@@ -172,8 +188,8 @@ bool AuboHardwareInterface::canSwitch(
 						stop_list.begin();
 						stop_controller_it != stop_list.end();
 						++stop_controller_it) {
-					if (stop_controller_it->hardware_interface
-							== "hardware_interface::PositionJointInterface") {
+                    if (stop_controller_it->type
+                            == "position_controllers/JointTrajectoryController") {
 						error = false;
 						break;
 					}
@@ -182,17 +198,17 @@ bool AuboHardwareInterface::canSwitch(
 					ROS_ERROR(
 							"%s (type %s) can not be run simultaneously with a PositionJointInterface",
 							controller_it->name.c_str(),
-							controller_it->hardware_interface.c_str());
-					return false;
+                            controller_it->type.c_str());
+                    return false;
 				}
 			}
-		} else if (controller_it->hardware_interface
-				== "hardware_interface::PositionJointInterface") {
+        } else if (controller_it->type
+                == "position_controllers/JointTrajectoryController") {
 			if (position_interface_running_) {
 				ROS_ERROR(
 						"%s: An interface of that type (%s) is already running",
 						controller_it->name.c_str(),
-						controller_it->hardware_interface.c_str());
+                        controller_it->type.c_str());
 				return false;
 			}
 			if (velocity_interface_running_) {
@@ -201,8 +217,8 @@ bool AuboHardwareInterface::canSwitch(
 						stop_list.begin();
 						stop_controller_it != stop_list.end();
 						++stop_controller_it) {
-					if (stop_controller_it->hardware_interface
-							== "hardware_interface::VelocityJointInterface") {
+                    if (stop_controller_it->type
+                            == "velocity_controllers/JointTrajectoryController") {
 						error = false;
 						break;
 					}
@@ -211,7 +227,7 @@ bool AuboHardwareInterface::canSwitch(
 					ROS_ERROR(
 							"%s (type %s) can not be run simultaneously with a VelocityJointInterface",
 							controller_it->name.c_str(),
-							controller_it->hardware_interface.c_str());
+                            controller_it->type.c_str());
 					return false;
 				}
 			}
@@ -228,13 +244,13 @@ void AuboHardwareInterface::doSwitch(
 	for (std::list<hardware_interface::ControllerInfo>::const_iterator controller_it =
 			stop_list.begin(); controller_it != stop_list.end();
 			++controller_it) {
-		if (controller_it->hardware_interface
-				== "hardware_interface::VelocityJointInterface") {
+        if (controller_it->type
+                == "velocity_controllers/JointTrajectoryController") {
 			velocity_interface_running_ = false;
 			ROS_DEBUG("Stopping velocity interface");
 		}
-		if (controller_it->hardware_interface
-				== "hardware_interface::PositionJointInterface") {
+        if (controller_it->type
+                == "position_controllers/JointTrajectoryController") {
 			position_interface_running_ = false;
 			std::vector<double> tmp;
             robot_->closeServo(tmp);
@@ -244,13 +260,14 @@ void AuboHardwareInterface::doSwitch(
 	for (std::list<hardware_interface::ControllerInfo>::const_iterator controller_it =
 			start_list.begin(); controller_it != start_list.end();
 			++controller_it) {
-        if (controller_it->hardware_interface
-				== "hardware_interface::VelocityJointInterface") {
+
+        if (controller_it->type
+                == "velocity_controllers/JointTrajectoryController") {
 			velocity_interface_running_ = true;
 			ROS_DEBUG("Starting velocity interface");
         }
-		if (controller_it->hardware_interface
-				== "hardware_interface::PositionJointInterface") {
+        if (controller_it->type
+                == "position_controllers/JointTrajectoryController") {
 			position_interface_running_ = true;
             robot_->openServo();
 			ROS_DEBUG("Starting position interface");
